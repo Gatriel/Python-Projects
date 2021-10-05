@@ -6,25 +6,27 @@ def arranger(problems, ans):
     operands = [] #stores the operands of each problem
     dashes = [] #stores how many dashes will be used
     results = [] #stores the result of each problem
+    
+    for i in range(0, len(problems)): ##removes any whitespaces, so that 33 + 44 becomes 33+44, to evitate cases of 44+    33, as this would break the formatting
+        problems[i] = problems[i].replace(" ", "")
 
     for problem in problems:
-        pos1 = problem.find(' ') 
-        pos2 = 0
+      
         if '+' in problem: #determine the operator
-            pos2 = problem.find('+')
+            pos = problem.find('+')
             operands.append('+')
         elif '-' in problem:
-            pos2 = problem.find('-')
+            pos = problem.find('-')
             operands.append('-')
         elif '*' in problem:
-            pos2 = problem.find('*')
+            pos = problem.find('*')
             operands.append('*')
         elif '/' in problem:
-            pos2 = problem.find('/')
+            pos = problem.find('/')
             operands.append('/')
 
-        operand1 = problem[:pos1] #separate the first number
-        operand2 = problem[pos2 + 2:len(problem)] #separate the second number
+        operand1 = problem[:pos] #separate the first number
+        operand2 = problem[pos + 1:len(problem)] #separate the second number
         #try catch to deal with things like a + 2
         try:
             test1 = int(operand1) 
